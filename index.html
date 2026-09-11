@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Class VIII.VI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        linear-gradient(
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.65)
+        ),
+        url("Foto/background.jpg");
+
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      text-align: center;
+      color: #666;
+      font-size: 10px;
+     }
+
+    nav {
+      width: 100%;
+      padding: 18px 20px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    nav h2 {
+      color: white;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-menu a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-menu a:hover {
+      opacity: 0.6;
+    }
+
+    .hero {
+      min-height: 80vh;
+      padding: 20px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+    }
+
+    .hero p {
+      color: #aaa;
+      letter-spacing: 5px;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: 45px;
+      margin: 10px 0;
+    }
+
+    .hero span {
+      color: #aaa;
+    }
+
+    @media (max-width: 600px) {
+     .nav-menu {
+       gap: 8px;
+     }
+    }
+
+    body {
+      animation: pageEnter 0.6s ease;
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-exit {
+      animation: pageExit 0.35s ease forwards;
+    }
+
+    @keyframes pageExit {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h2>CLASS VIII.VI</h2>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <p>WELCOME TO</p>
+    <h1>CLASS VIII.VI</h1>
+    <span>Cungprettt.</span>
+  </section>
+
+  <footer>
+    <p>© 2026 Class VIII.VI</p>
+    <span>Created by Saddam Al Rasyid</span>
+  </footer>
+
+  <script>
+    window.addEventListener("pageshow", () => {
+      document.body.classList.remove("page-exit");
+    });
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const url = this.href;
+
+        if (
+          url &&
+          !url.includes("#") &&
+          !this.target &&
+          new URL(url).origin === location.origin &&
+          new URL(url).pathname !== location.pathname
+        ) {
+          e.preventDefault();
+
+          document.body.classList.add("page-exit");
+
+          setTimeout(() => {
+            window.location.href = url;
+          }, 350);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

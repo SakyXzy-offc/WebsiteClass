@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Class VIII.VI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #000;
+      background-image:
+        linear-gradient(
+          rgba(0, 0, 0, 0.65),
+          rgba(0, 0, 0, 0.65)
+        ),
+        url("Foto/background.jpg");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      font-family: Arial, sans-serif;
+      color: white;
+      animation: pageEnter 0.6s ease;
+    }
+
+    nav {
+      width: 100%;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
+    }
+
+    nav h2 {
+      color: white;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .nav-menu a {
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-menu a:hover {
+      opacity: 0.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .section {
+      min-height: 45vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 40px 25px;
+    }
+
+    .section p {
+      color: #aaa;
+      letter-spacing: 5px;
+      font-size: 14px;
+    }
+
+    .section h1 {
+      color: white;
+      font-size: 45px;
+      margin: 12px 0;
+    }
+
+    .section span {
+      color: #aaa;
+      max-width: 550px;
+      line-height: 1.6;
+      font-size: 17px;
+    }
+
+    .officers {
+      width: 100%;
+      max-width: 700px;
+      margin: 30px auto 75px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .officer-card {
+      padding: 25px 20px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
+
+    .officer-card p {
+      color: #888;
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .officer-card h2 {
+      color: white;
+      font-size: 20px;
+    }
+
+    .members-section {
+      min-height: auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+
+    .members {
+      width: 100%;
+      max-width: 850px;
+      margin: 30px auto 75px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .member-card {
+      padding: 16px 18px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      backdrop-filter: blur(10px);
+      text-align: left;
+    }
+
+    .member-card .number {
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .member-card h2 {
+      color: white;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .gallery {
+      width: 100%;
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 10px 5px 20px;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gallery img {
+      flex: 0 0 auto;
+      width: 260px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      user-select: none;
+      -webkit-user-drag: none;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery img:active {
+      transform: scale(0.97);
+    }
+
+    .gallery img {
+  cursor: pointer;
+}
+
+.image-viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(0, 0, 0, 0.9);
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.image-viewer img {
+  max-width: 95%;
+  max-height: 90vh;
+  border-radius: 12px;
+  transform: scale(0.7);
+  opacity: 0;
+}
+
+.image-viewer.active {
+  display: flex;
+}
+
+.image-viewer.active img {
+  animation: imageZoom 0.35s ease forwards;
+}
+
+@keyframes imageZoom {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+    .gallery,
+.gallery * {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+    @media (max-width: 600px) {
+      .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-menu a {
+        font-size: 14px;
+      }
+
+      .container {
+        padding: 20px 15px;
+      }
+
+      .section {
+        min-height: 45vh;
+        padding: 30px 15px;
+      }
+
+      .section h1 {
+        font-size: 38px;
+      }
+
+      .section span {
+        font-size: 16px;
+      }
+
+      .officers {
+        grid-template-columns: 1fr;
+      }
+
+      .members {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery img {
+        width: 230px;
+        height: 160px;
+      }
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .page-exit {
+      animation: pageExit 0.35s ease forwards;
+    }
+
+    @keyframes pageExit {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      to {
+        opacity: 0;
+        transform: translateY(-15px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h2>CLASS VIII.VI</h2>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="section">
+      <p>ABOUT OUR CLASS</p>
+      <h1>Class VIII.VI</h1>
+      <span>
+        Class 8.6 adalah tempat di mana kami belajar, berkembang, dan berbagi cerita bersama.
+        Bukan hanya sekumpulan siswa dalam satu kelas, tetapi sekumpulan cerita, tawa,
+        perjuangan, dan kenangan yang menjadi bagian dari perjalanan kami.
+      </span>
+    </section>
+
+    <section class="section">
+      <p>CLASS OFFICERS</p>
+      <h1>Struktur Kelas</h1>
+      <div class="officers">
+        <div class="officer-card">
+          <p>WALI KELAS</p>
+          <h2>Galih Sunda Bagaskara</h2>
+        </div>
+
+        <div class="officer-card">
+          <h2>KETUA & WAKIL</h2>
+          <span>
+            1. BATRISYIA BILQIS DAMIA RAMADHANI<br>
+            2. MUHAMMAD ARKHAN KHAIRUL QALAM
+          </span>
+        </div>
+
+        <div class="officer-card">
+          <h2>SEKRETARIS & WAKIL</h2>
+          <span>
+            1. RAISA SAKHILLA<br>
+            2. NASYWAA ALLYA PUTRI
+          </span>
+        </div>
+
+        <div class="officer-card">
+          <h2>BENDAHARA & WAKIL</h2>
+          <span>
+            1. Shakilla Marwah<br>
+            2.
+          </span>
+        </div>
+
+        <div class="officer-card">
+          <p>BENDAHARA</p>
+          <h2>null 6</h2>
+        </div>
+
+        <div class="officer-card">
+          <p>SEKSI</p>
+          <h2>null 7</h2>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section members-section">
+      <p>OUR MEMBERS</p>
+      <h1>Anggota Kelas</h1>
+      <div class="members">
+        <div class="member-card">
+          <div class="number">01</div>
+          <h2>ADRIAN RAISYA DINMANSYAH</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">02</div>
+          <h2>Andika Satriadi</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">03</div>
+          <h2>AZKA KHAIZA GILYA</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">04</div>
+          <h2>AZZHARA FIRDAWATI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">05</div>
+          <h2>AULIA PUTRI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">06</div>
+          <h2>BATRISYIA BILQIS DAMIA RAMADHANI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">07</div>
+          <h2>Bunga Izzatun Nisa</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">08</div>
+          <h2>Danis swara</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">09</div>
+          <h2>DHIYA IZZ ZARA KHAYLA</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">10</div>
+          <h2>DISYA CALLISTA QUEENOV</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">11</div>
+          <h2>Dinnar Andra Priyatmojo</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">12</div>
+          <h2>EMIRSYAH IKRAAM</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">13</div>
+          <h2>FARIDUDDIN ATHAR SETIAWAN</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">14</div>
+          <h2>Fira Rahmadania</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">15</div>
+          <h2>FRIDHIANSYAH MUHAMMAD RIZQI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">16</div>
+          <h2>Jonathan Gabriello Rahardjo</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">17</div>
+          <h2>KAYLA NUR AZIZAH</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">18</div>
+          <h2>LUTHFIA ZAHRA APRILIA</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">19</div>
+          <h2>Magfira</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">20</div>
+          <h2>Marcello Yafidyanto</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">21</div>
+          <h2>Masyita Annety Putri</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">22</div>
+          <h2>Mika Simbolon</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">23</div>
+          <h2>Muhamad Haikal</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">24</div>
+          <h2>Muhamad Padli</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">25</div>
+          <h2>Muhamad Rizky</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">26</div>
+          <h2>MUHAMMAD ARKHAN KHAIRUL QALAM</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">27</div>
+          <h2>MUHAMMAD ARKHA FITRAH ATHAYA</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">28</div>
+          <h2>Muhammad Rafid Assiroji</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">29</div>
+          <h2>Muhammad Rizki</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">30</div>
+          <h2>NASYWAA ALLYA PUTRI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">31</div>
+          <h2>Natasyia Aisyah</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">32</div>
+          <h2>NEYSILA ARIHANSANI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">33</div>
+          <h2>NURDIN ALI ZULKARNAEN</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">34</div>
+          <h2>RAFIQI AUFA GHIFARI</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">35</div>
+          <h2>Rachel Fairuz Ilmuklisin</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">36</div>
+          <h2>RAISA SAKHILLA</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">37</div>
+          <h2>Saddam Al Rasyid</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">38</div>
+          <h2>Shakilla Marwah</h2>
+        </div>
+
+        <div class="member-card">
+          <div class="number">39</div>
+          <h2>TRISTAN AL DIANO HERMAWAN</h2>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <p>OUR MEMORIES</p>
+      <h1>Gallery</h1>
+      <div class="gallery">
+        <img src="Foto/gallery1.jpg" alt="">
+        <img src="Foto/gallery2.jpg" alt="">
+        <img src="Foto/gallery3.jpg" alt="">
+        <img src="Foto/gallery4.jpg" alt="">
+      </div>
+    </section>
+  </main>
+
+  <div class="image-viewer" id="imageViewer">
+  <img id="viewerImage">
+</div>
+
+<script>
+  const viewer = document.getElementById("imageViewer");
+  const viewerImage = document.getElementById("viewerImage");
+
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      viewerImage.src = img.src;
+      viewer.classList.add("active");
+    });
+  });
+
+  viewer.addEventListener("click", () => {
+    viewer.classList.remove("active");
+  });
+</script>
+
+  <script>
+    window.addEventListener("pageshow", () => {
+      document.body.classList.remove("page-exit");
+    });
+    
+    document.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        const url = this.href;
+
+        if (
+          url &&
+          !url.includes("#") &&
+          !this.target &&
+          new URL(url).origin === location.origin &&
+          new URL(url).pathname !== location.pathname
+        ) {
+          e.preventDefault();
+
+          document.body.classList.add("page-exit");
+
+          setTimeout(() => {
+            window.location.href = url;
+          }, 350);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
