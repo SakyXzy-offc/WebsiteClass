@@ -315,6 +315,68 @@
         transform: translateY(-15px);
       }
     }
+
+.schedule {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 75px;
+}
+
+.schedule h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.schedule-card {
+  padding: 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.schedule-card h3 {
+  margin: 0 0 12px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.schedule-card ol {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.schedule-card li {
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.duty-card {
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.duty-card p {
+  margin: 0;
+  color: #999;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .schedule-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -574,6 +636,68 @@
 
       </div>
     </section>
+    
+    <section class="schedule">
+
+  <h2>JADWAL MATA PELAJARAN</h2>
+
+  <div class="schedule-grid">
+
+    <div class="schedule-card">
+      <h3>SENIN</h3>
+      <ol>
+        <li>PABP</li>
+        <li>Bahasa Indonesia</li>
+        <li>IPS</li>
+      </ol>
+    </div>
+
+    <div class="schedule-card">
+      <h3>SELASA</h3>
+      <ol>
+        <li>Bahasa Indonesia</li>
+        <li>IPA</li>
+        <li>Matematika</li>
+        <li>SBK</li>
+      </ol>
+    </div>
+
+    <div class="schedule-card">
+      <h3>RABU</h3>
+      <ol>
+        <li>PPKN</li>
+        <li>Bahasa Sunda</li>
+        <li>TIK</li>
+        <li>IPA</li>
+      </ol>
+    </div>
+
+    <div class="schedule-card">
+      <h3>KAMIS</h3>
+      <ol>
+        <li>PJOK</li>
+        <li>Matematika</li>
+        <li>BK</li>
+        <li>Bahasa Inggris</li>
+      </ol>
+    </div>
+
+    <div class="schedule-card">
+      <h3>JUMAT</h3>
+      <ol>
+        <li>7 Kaih</li>
+        <li>MBG</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="duty-card">
+    <h3>JADWAL PIKET</h3>
+    <p>Belum tersedia</p>
+  </div>
+
+</section>
 
     <section class="section">
       <p>OUR MEMORIES</p>
